@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Login } from '../interfaces/login';
-import { Sesion } from '../interfaces/sesion';
+import { Session } from '../interfaces/session';
 
 import { environment } from '../../../environments/environment';
 
@@ -18,7 +18,7 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  signIn(request: Login): Observable<Sesion> {
-    return this.http.post<Sesion>(`${this.baseUrl}login`, request)
+  signIn(request: Login): Observable<Session> {
+    return this.http.post<Session>(`${this.baseUrl}login`, request)
   }
 }
