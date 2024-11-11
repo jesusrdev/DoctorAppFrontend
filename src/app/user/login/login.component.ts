@@ -52,4 +52,8 @@ export class LoginComponent {
       },
     });
   }
+
+  setHidePassword(value: boolean): void {
+    this.hidePassword = value;
+  }
 }
