@@ -1,6 +1,7 @@
 import { AppRoutingModule } from '../app-routing.module';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { LayoutRoutingModule } from './layout-routing.module';
 import { MaterialModule } from '../material/material.module';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms'
@@ -16,8 +17,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   ],
   imports: [
     CommonModule,
+    LayoutRoutingModule,
     MaterialModule,
-    AppRoutingModule,
   ],
   exports: [
     FormsModule,
