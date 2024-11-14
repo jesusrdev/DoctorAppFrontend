@@ -1,1 +1,19 @@
-<p>layout works!</p>
+<mat-toolbar color="primary">
+  <span>Doctor App</span>
+  <button mat-icon-button
+  (click)="sidenav.toggle();"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+</mat-toolbar>
+
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav opened mode="side" style="width: 220px; background: black;"></mat-sidenav>
+
+  <mat-sidenav-content>
+    <div style="height: 90vh;">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
