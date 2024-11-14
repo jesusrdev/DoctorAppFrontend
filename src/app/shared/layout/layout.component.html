@@ -1,18 +1,27 @@
 <mat-toolbar color="primary">
   <span>Doctor App</span>
-  <button mat-icon-button
-  (click)="sidenav.toggle();"
-  >
+  <button mat-icon-button (click)="sidenav.toggle()">
     <mat-icon>menu</mat-icon>
+  </button>
+
+  <span style="flex: 1 1 auto"></span>
+  <label style="font-size: 14px; margin-right: 20px">{{ username }}</label>
+
+  <button mat-icon-button (click)="logOut()">
+    <mat-icon>logout</mat-icon>
   </button>
 </mat-toolbar>
 
-
 <mat-sidenav-container>
-  <mat-sidenav #sidenav opened mode="side" style="width: 220px; background: black;"></mat-sidenav>
+  <mat-sidenav
+    #sidenav
+    opened
+    mode="side"
+    style="width: 220px; background: black"
+  ></mat-sidenav>
 
   <mat-sidenav-content>
-    <div style="height: 90vh;">
+    <div style="height: 90vh">
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
