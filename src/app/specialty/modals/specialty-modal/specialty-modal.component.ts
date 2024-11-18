@@ -72,7 +72,12 @@ export class SpecialtyModalComponent implements OnInit {
             );
           }
         },
-        error: (e) => {},
+        error: (e) => {
+          this._sharedService.showAlert(
+            e.error.errors,
+            'Error'
+          );
+        },
       });
     } else {
       // Update Specialty
