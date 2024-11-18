@@ -3,38 +3,66 @@
 <div class="content">
   <mat-card class="m-2">
     <mat-card-title>
-      <button mat-raised-button color="primary" (click)="newSpecialty()" class="m-2">
-          <mat-icon mat-list-icon>add</mat-icon>Nuevo
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="newSpecialty()"
+        class="m-2"
+      >
+        <mat-icon mat-list-icon>add</mat-icon>Nuevo
       </button>
     </mat-card-title>
     <mat-divider></mat-divider>
-    <mat-card-content class="mt-2" style="overflow-x: auto;">
+    <mat-card-content class="mt-2" style="overflow-x: auto">
+      <mat-form-field style="width: 100%">
+        <mat-label>Buscar</mat-label>
+        <input
+          matInput
+          (keyup)="applyFilterList($event)"
+          placeholder="Filter"
+          #input
+        />
+      </mat-form-field>
+
       <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSource">
-
           <ng-container matColumnDef="nameSpecialty">
             <th mat-header-cell *matHeaderCellDef>Name</th>
-            <td mat-cell *matCellDef="let element">{{ element.nameSpecialty }}</td>
+            <td mat-cell *matCellDef="let element">
+              {{ element.nameSpecialty }}
+            </td>
           </ng-container>
 
           <ng-container matColumnDef="description">
             <th mat-header-cell *matHeaderCellDef>Description</th>
-            <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+            <td mat-cell *matCellDef="let element">
+              {{ element.description }}
+            </td>
           </ng-container>
 
           <ng-container matColumnDef="state">
             <th mat-header-cell *matHeaderCellDef>State</th>
-            <td mat-cell *matCellDef="let element">{{ element.state == 1 ? 'Active' : 'Inactive' }}</td>
+            <td mat-cell *matCellDef="let element">
+              {{ element.state == 1 ? "Active" : "Inactive" }}
+            </td>
           </ng-container>
 
           <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef>Actions</th>
             <td mat-cell *matCellDef="let element">
-              <button mat-icon-button color="primary" (click)="editSpecialty(element)">
+              <button
+                mat-icon-button
+                color="primary"
+                (click)="editSpecialty(element)"
+              >
                 <mat-icon>edit</mat-icon>
               </button>
 
-              <button mat-icon-button color="warn" (click)="removeSpecialty(element)">
+              <button
+                mat-icon-button
+                color="warn"
+                (click)="removeSpecialty(element)"
+              >
                 <mat-icon>delete</mat-icon>
               </button>
             </td>
@@ -42,6 +70,12 @@
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">
+              There is no data matching the filter "{{ input.value }}"
+            </td>
+          </tr>
         </table>
 
         <mat-paginator
