@@ -10,6 +10,7 @@ import { SharedService } from '../../../shared/shared.service';
 import { SpecialtyModalComponent } from '../../modals/specialty-modal/specialty-modal.component';
 
 import { MatDialog } from '@angular/material/dialog';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-list-specialty',
@@ -70,6 +71,39 @@ export class ListSpecialtyComponent implements OnInit, AfterViewInit {
       .subscribe((result) => {
         if (result === true) this.getSpecialties();
       });
+  }
+
+  removeSpecialty(specialty: Specialty) {
+    Swal.fire({
+      title: 'Do you want to remove the specialty?',
+      text: specialty.nameSpecialty,
+      icon: 'warning',
+      confirmButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, remove',
+      showCancelButton: true,
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'No',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this._specialtyService.delete(specialty.id).subscribe({
+          next: (data) => {
+            if (data.isSuccessfull) {
+              this._sharedService.showAlert(
+                'The specialty was deleted',
+                'Complete'
+              );
+              this.getSpecialties();
+            } else {
+              this._sharedService.showAlert(
+                'Specialty could not be eliminated',
+                'Error!'
+              );
+            }
+          },
+          error: (e) => {}
+        });
+      }
+    });
   }
 
   ngOnInit(): void {
