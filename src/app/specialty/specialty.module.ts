@@ -6,12 +6,14 @@ import { SharedModule } from '../shared/shared.module';
 import { SpecialtyService } from './services/specialty.service';
 
 import { ListSpecialtyComponent } from './pages/list-specialty/list-specialty.component';
+import { SpecialtyModalComponent } from './modals/specialty-modal/specialty-modal.component';
 
 
 
 @NgModule({
   declarations: [
-    ListSpecialtyComponent
+    ListSpecialtyComponent,
+    SpecialtyModalComponent
   ],
   imports: [
     CommonModule,
