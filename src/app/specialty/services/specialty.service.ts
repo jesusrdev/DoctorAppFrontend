@@ -14,20 +14,20 @@ export class SpecialtyService {
 
   constructor(private http: HttpClient) { }
 
-  list(): Observable<ApiResponse> {
-    return this.http.get<ApiResponse>(`${this.baseUrl}`);
+  list(): Observable<ApiResponse<Specialty[]>> {
+    return this.http.get<ApiResponse<Specialty[]>>(`${this.baseUrl}`);
   }
 
-  create(request: Specialty): Observable<ApiResponse> {
-    return this.http.post<ApiResponse>(`${this.baseUrl}`, request);
+  create(request: Specialty): Observable<ApiResponse<Specialty>> {
+    return this.http.post<ApiResponse<Specialty>>(`${this.baseUrl}`, request);
   }
 
-  update(request: Specialty): Observable<ApiResponse> {
-    return this.http.put<ApiResponse>(`${this.baseUrl}`, request);
+  update(request: Specialty): Observable<ApiResponse<Specialty>> {
+    return this.http.put<ApiResponse<Specialty>>(`${this.baseUrl}`, request);
   }
 
-  delete(id: number): Observable<ApiResponse> {
-    return this.http.delete<ApiResponse>(`${this.baseUrl}${id}`);
+  delete(id: number): Observable<ApiResponse<Specialty>> {
+    return this.http.delete<ApiResponse<Specialty>>(`${this.baseUrl}${id}`);
   }
 
 }

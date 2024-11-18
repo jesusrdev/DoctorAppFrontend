@@ -3,15 +3,15 @@ import { MaterialModule } from '../material/material.module';
 import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
 
-import { SpecialtyComponent } from './pages/specialty/specialty.component';
-
 import { SpecialtyService } from './services/specialty.service';
+
+import { ListSpecialtyComponent } from './pages/list-specialty/list-specialty.component';
 
 
 
 @NgModule({
   declarations: [
-    SpecialtyComponent
+    ListSpecialtyComponent
   ],
   imports: [
     CommonModule,
