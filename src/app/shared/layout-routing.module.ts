@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LayoutComponent } from './layout/layout.component';
 import { ListSpecialtyComponent } from '../specialty/pages/list-specialty/list-specialty.component';
+import { ListDoctorComponent } from '../doctor/pages/list-doctor/list-doctor.component';
 
 import {} from '../specialty/specialty.module';
 
@@ -14,7 +15,12 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       { path: 'dashboard', component: DashboardComponent, pathMatch: 'full' },
-      { path: 'specialties', component: ListSpecialtyComponent, pathMatch: 'full' },
+      {
+        path: 'specialties',
+        component: ListSpecialtyComponent,
+        pathMatch: 'full',
+      },
+      { path: 'doctors', component: ListDoctorComponent, pathMatch: 'full' },
       { path: '**', redirectTo: '', pathMatch: 'full' },
     ],
   },
@@ -23,8 +29,6 @@ const routes: Routes = [
 @NgModule({
   declarations: [],
   imports: [CommonModule, RouterModule.forChild(routes)],
-  exports: [
-    RouterModule,
-  ]
+  exports: [RouterModule],
 })
 export class LayoutRoutingModule {}

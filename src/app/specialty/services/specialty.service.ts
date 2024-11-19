@@ -18,6 +18,10 @@ export class SpecialtyService {
     return this.http.get<ApiResponse<Specialty[]>>(`${this.baseUrl}`);
   }
 
+  listActive(): Observable<ApiResponse<Specialty[]>> {
+    return this.http.get<ApiResponse<Specialty[]>>(`${this.baseUrl}active`);
+  }
+
   create(request: Specialty): Observable<ApiResponse<Specialty>> {
     return this.http.post<ApiResponse<Specialty>>(`${this.baseUrl}`, request);
   }
