@@ -8,6 +8,7 @@ import { ListSpecialtyComponent } from '../specialty/pages/list-specialty/list-s
 import { ListDoctorComponent } from '../doctor/pages/list-doctor/list-doctor.component';
 
 import {} from '../specialty/specialty.module';
+import {} from '../doctor/doctor.module';
 
 const routes: Routes = [
   {

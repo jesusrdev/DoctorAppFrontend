@@ -1,1 +1,111 @@
-<p>list-doctor works!</p>
+<h1 class="m-2">Doctors</h1>
+
+<div class="content">
+  <mat-card class="m-2">
+    <mat-card-title>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="newDoctor()"
+        class="m-2"
+      >
+        <mat-icon mat-list-icon>add</mat-icon>New
+      </button>
+    </mat-card-title>
+    <mat-divider></mat-divider>
+    <mat-card-content class="mt-2" style="overflow-x: auto">
+      <mat-form-field style="width: 100%">
+        <mat-label>Search</mat-label>
+        <input
+          matInput
+          (keyup)="applyFilterList($event)"
+          placeholder="Filter"
+          #input
+        />
+      </mat-form-field>
+
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource">
+          <ng-container matColumnDef="lastname">
+            <th mat-header-cell *matHeaderCellDef>Lastname</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.lastname }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="firstname">
+            <th mat-header-cell *matHeaderCellDef>Firstname</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.firstname }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="phone">
+            <th mat-header-cell *matHeaderCellDef>Phone</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.phone }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="genre">
+            <th mat-header-cell *matHeaderCellDef>Genre</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.genre == 'M' ? "Masculino" : "Femenino" }}
+            </td>
+          </ng-container>
+
+                    <ng-container matColumnDef="nameSpecialty">
+                      <th mat-header-cell *matHeaderCellDef>Name Specialty</th>
+                      <td mat-cell *matCellDef="let element">
+                        {{ element.nameSpecialty }}
+                      </td>
+                    </ng-container>
+
+          <ng-container matColumnDef="state">
+            <th mat-header-cell *matHeaderCellDef>State</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.state == 1 ? "Active" : "Inactive" }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Actions</th>
+            <td mat-cell *matCellDef="let element">
+              <button
+                mat-icon-button
+                color="primary"
+                (click)="editDoctor(element)"
+              >
+                <mat-icon>edit</mat-icon>
+              </button>
+
+              <button
+                mat-icon-button
+                color="warn"
+                (click)="removeDoctor(element)"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">
+              There is no data matching the filter "{{ input.value }}"
+            </td>
+          </tr>
+        </table>
+
+        <mat-paginator
+          [pageSizeOptions]="[5, 10, 20]"
+          showFirstLastButtons
+          aria-label="Select page of periodic elements"
+        >
+        </mat-paginator>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
