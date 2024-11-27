@@ -72,9 +72,9 @@ export class DoctorModalComponent implements OnInit {
     const Doctor: Doctor = {
       id: this.dataDoctor?.id ?? 0,
       lastname: this.formDoctor.value.lastname,
-      firstname: this.formDoctor.value.lastname,
-      direction: this.formDoctor.value.lastname,
-      phone: this.formDoctor.value.direction,
+      firstname: this.formDoctor.value.firstname,
+      direction: this.formDoctor.value.direction,
+      phone: this.formDoctor.value.phone,
       genre: this.formDoctor.value.genre,
       specialtyId: parseInt(this.formDoctor.value.specialtyId),
       nameSpecialty: '',

@@ -11,6 +11,8 @@ import { SharedService } from '../../../shared/shared.service';
 
 import { DoctorModalComponent } from '../../modals/doctor-modal/doctor-modal.component';
 
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-list-doctor',
   templateUrl: './list-doctor.component.html',
@@ -75,36 +77,36 @@ export class ListDoctorComponent implements OnInit, AfterViewInit {
   }
 
   removeDoctor(doctor: Doctor) {
-    //   Swal.fire({
-    //     title: 'Do you want to remove the specialty?',
-    //     text: specialty.nameSpecialty,
-    //     icon: 'warning',
-    //     confirmButtonColor: '#3085d6',
-    //     confirmButtonText: 'Yes, remove',
-    //     showCancelButton: true,
-    //     cancelButtonColor: '#d33',
-    //     cancelButtonText: 'No',
-    //   }).then((result) => {
-    //     if (result.isConfirmed) {
-    //       this._specialtyService.delete(specialty.id).subscribe({
-    //         next: (data) => {
-    //           if (data.isSuccessfull) {
-    //             this._sharedService.showAlert(
-    //               'The specialty was deleted',
-    //               'Complete'
-    //             );
-    //             this.getSpecialties();
-    //           } else {
-    //             this._sharedService.showAlert(
-    //               'Specialty could not be eliminated',
-    //               'Error!'
-    //             );
-    //           }
-    //         },
-    //         error: (e) => {},
-    //       });
-    //     }
-    //   });
+      Swal.fire({
+        title: 'Do you want to remove the doctor?',
+        text: doctor.lastname + " " + doctor.firstname,
+        icon: 'warning',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, remove',
+        showCancelButton: true,
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'No',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this._doctorService.delete(doctor.id).subscribe({
+            next: (data) => {
+              if (data.isSuccessfull) {
+                this._sharedService.showAlert(
+                  'The doctor was deleted',
+                  'Complete'
+                );
+                this.getDoctors();
+              } else {
+                this._sharedService.showAlert(
+                  'Doctor could not be eliminated',
+                  'Error!'
+                );
+              }
+            },
+            error: (e) => {},
+          });
+        }
+      });
   }
 
   applyFilterList(event: Event) {
