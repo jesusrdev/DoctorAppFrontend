@@ -7,6 +7,8 @@ import { LayoutComponent } from './layout/layout.component';
 import { ListSpecialtyComponent } from '../specialty/pages/list-specialty/list-specialty.component';
 import { ListDoctorComponent } from '../doctor/pages/list-doctor/list-doctor.component';
 
+import { authGuard } from '../_guards/auth.guard';
+
 import {} from '../specialty/specialty.module';
 import {} from '../doctor/doctor.module';
 
@@ -14,8 +16,15 @@ const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
+    runGuardsAndResolvers: 'always',
+    canActivate: [authGuard],
     children: [
-      { path: 'dashboard', component: DashboardComponent, pathMatch: 'full' },
+      {
+        path: 'dashboard',
+        component: DashboardComponent,
+        pathMatch: 'full',
+        // canActivate: [authGuard],
+      },
       {
         path: 'specialties',
         component: ListSpecialtyComponent,
