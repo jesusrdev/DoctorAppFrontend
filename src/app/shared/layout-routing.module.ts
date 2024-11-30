@@ -12,6 +12,7 @@ import { authGuard } from '../_guards/auth.guard';
 
 import {} from '../specialty/specialty.module';
 import {} from '../doctor/doctor.module';
+import {} from '../user/user.module';
 
 const routes: Routes = [
   {

@@ -7,12 +7,14 @@ import { UserService } from './services/user.service';
 
 import { LoginComponent } from './login/login.component';
 import { ListUserComponent } from './pages/list-user/list-user.component';
+import { UserModalComponent } from './modals/user-modal/user-modal.component';
 
 
 @NgModule({
   declarations: [
     LoginComponent,
-    ListUserComponent
+    ListUserComponent,
+    UserModalComponent
   ],
   imports: [
     CommonModule,

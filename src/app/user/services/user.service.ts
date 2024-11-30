@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { Login } from '../interfaces/login';
 import { Session } from '../interfaces/session';
 import { SignUp } from '../interfaces/sign-up';
+import { User } from '../interfaces/user';
 
 import { environment } from '../../../environments/environment';
 
@@ -28,7 +29,7 @@ export class UserService {
     return this.http.post<Session>(`${this.baseUrl}sign-up`, request);
   }
 
-  list(): Observable<ApiResponse<SignUp[]>> {
+  list(): Observable<ApiResponse<User[]>> {
     return this.http.get<ApiResponse<SignUp[]>>(`${this.baseUrl}`);
   }
 
