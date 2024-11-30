@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { UserService } from '../services/user.service';
-import { SharedService } from '../../shared/shared.service';
 import { Login } from '../interfaces/login';
 
+import { UserService } from '../services/user.service';
+import { SharedService } from '../../shared/shared.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,8 @@ export class LoginComponent {
     private fb: FormBuilder,
     private router: Router,
     private userService: UserService,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private cookieService: CookieService
   ) {
     this.formLogin = this.fb.group({
       username: ['', Validators.required],
@@ -41,6 +43,17 @@ export class LoginComponent {
     this.userService.signIn(request).subscribe({
       next: (response) => {
         this.sharedService.setSession(response);
+
+        this.cookieService.set(
+          'Authorization',
+          `Bearer ${response.token}`,
+          undefined,
+          '/',
+          undefined,
+          true,
+          'Strict'
+        );
+
         this.router.navigate(['layout']);
       },
       complete: () => {
