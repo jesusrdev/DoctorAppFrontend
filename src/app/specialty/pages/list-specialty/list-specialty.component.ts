@@ -47,7 +47,9 @@ export class ListSpecialtyComponent implements OnInit, AfterViewInit {
           this._sharedService.showAlert('Not data found', 'Warning');
         }
       },
-      error: (e) => {},
+      error: (e) => {
+        this._sharedService.showAlert(e.error.message, 'Error!');
+      },
     });
   }
 
@@ -100,7 +102,9 @@ export class ListSpecialtyComponent implements OnInit, AfterViewInit {
               );
             }
           },
-          error: (e) => {},
+          error: (e) => {
+            this._sharedService.showAlert(e.error.message, 'Error!');
+          },
         });
       }
     });

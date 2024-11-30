@@ -73,10 +73,7 @@ export class SpecialtyModalComponent implements OnInit {
           }
         },
         error: (e) => {
-          this._sharedService.showAlert(
-            e.error.errors,
-            'Error'
-          );
+          this._sharedService.showAlert(e.error.message, 'Error');
         },
       });
     } else {
@@ -96,7 +93,9 @@ export class SpecialtyModalComponent implements OnInit {
             );
           }
         },
-        error: (e) => {},
+        error: (e) => {
+          this._sharedService.showAlert(e.error.message, 'Error');
+        },
       });
     }
   }
