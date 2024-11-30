@@ -4,18 +4,25 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Specialty } from '../interfaces/specialty';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SpecialtyService {
-
   baseUrl: string = environment.apiUrl + 'specialty/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private cookieService: CookieService) {}
 
   list(): Observable<ApiResponse<Specialty[]>> {
-    return this.http.get<ApiResponse<Specialty[]>>(`${this.baseUrl}`);
+    return this.http.get<ApiResponse<Specialty[]>>(
+      `${this.baseUrl}`
+      // {
+      //   headers: {
+      //     Authorization: this.cookieService.get('Authorization'),
+      //   },
+      // }
+    );
   }
 
   listActive(): Observable<ApiResponse<Specialty[]>> {
@@ -33,5 +40,4 @@ export class SpecialtyService {
   delete(id: number): Observable<ApiResponse<Specialty>> {
     return this.http.delete<ApiResponse<Specialty>>(`${this.baseUrl}${id}`);
   }
-
 }
