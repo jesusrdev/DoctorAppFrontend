@@ -8,6 +8,7 @@ import { User } from '../../interfaces/user';
 
 import { SharedService } from '../../../shared/shared.service';
 import { UserService } from '../../services/user.service';
+import { UserModalComponent } from '../../modals/user-modal/user-modal.component';
 
 @Component({
   selector: 'app-list-user',
@@ -53,12 +54,12 @@ export class ListUserComponent implements OnInit, AfterViewInit {
   }
 
   newUser() {
-    // this.dialog
-    //   .open(SpecialtyModalComponent, { disableClose: true, width: '400px' })
-    //   .afterClosed()
-    //   .subscribe((result) => {
-    //     if (result === true) this.getSpecialties();
-    //   });
+    this.dialog
+      .open(UserModalComponent, { disableClose: true, width: '400px' })
+      .afterClosed()
+      .subscribe((result) => {
+        if (result === true) this.getUsers();
+      });
   }
 
   applyFilterList(event: Event) {
