@@ -6,11 +6,13 @@ import { SharedModule } from '../shared/shared.module';
 import { UserService } from './services/user.service';
 
 import { LoginComponent } from './login/login.component';
+import { ListUserComponent } from './pages/list-user/list-user.component';
 
 
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
+    ListUserComponent
   ],
   imports: [
     CommonModule,

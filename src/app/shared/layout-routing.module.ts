@@ -4,8 +4,9 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LayoutComponent } from './layout/layout.component';
-import { ListSpecialtyComponent } from '../specialty/pages/list-specialty/list-specialty.component';
 import { ListDoctorComponent } from '../doctor/pages/list-doctor/list-doctor.component';
+import { ListSpecialtyComponent } from '../specialty/pages/list-specialty/list-specialty.component';
+import { ListUserComponent } from '../user/pages/list-user/list-user.component';
 
 import { authGuard } from '../_guards/auth.guard';
 
@@ -31,6 +32,7 @@ const routes: Routes = [
         pathMatch: 'full',
       },
       { path: 'doctors', component: ListDoctorComponent, pathMatch: 'full' },
+      { path: 'users', component: ListUserComponent, pathMatch: 'full' },
       { path: '**', redirectTo: '', pathMatch: 'full' },
     ],
   },
